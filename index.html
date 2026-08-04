@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Undangan Ahmad & Nisrina</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -10,133 +10,154 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root { --maroon: #7A1E2B; --wine: #A13D4A; --cream: #FDF8F5; }
-    body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: #333; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--cream); color: #333; overflow-x: hidden; }
     h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .bg-maroon { background-color: var(--maroon); }
     .text-maroon { color: var(--maroon); }
     .border-maroon { border-color: var(--maroon); }
-    .hero { background-image: url('https://lh3.googleusercontent.com/d/1uI772o8WZNSrL43u0yn9EbDx5kENVcP3'); background-attachment: fixed; background-size: cover; background-position: center; }
+    .hero { 
+      background-image: url('https://lh3.googleusercontent.com/d/1uI772o8WZNSrL43u0yn9EbDx5kENVcP3'); 
+      background-size: cover; 
+      background-position: center; 
+      background-attachment: scroll; /* biar di HP ga bug */
+    }
     .fade-in { animation: fadeIn 1.5s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    /* Biar tombol musik ga ketutup navbar HP */
+    #musicBtn { padding-bottom: calc(0.75rem + env(safe-area-inset-bottom)); }
   </style>
 </head>
 <body>
 
   <!-- MUSIC -->
-  <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
-  <button id="musicBtn" class="fixed bottom-5 right-5 z-50 bg-maroon text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-wine transition">
-    <span id="musicIcon">♫</span> <span id="musicText" class="text-sm font-medium">Play Music</span>
+  <audio id="bgMusic" loop playsinline><source src="music.mp3" type="audio/mpeg"></audio>
+  <button id="musicBtn" class="fixed bottom-5 right-5 z-50 bg-maroon text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-wine transition text-sm">
+    <span id="musicIcon">♫</span> <span id="musicText">Play</span>
   </button>
 
   <!-- HERO -->
-  <section class="hero h-screen flex items-center justify-center text-center text-white relative">
+  <section class="hero min-h-screen w-full flex items-center justify-center text-center text-white relative px-4">
     <div class="absolute inset-0 bg-black/50"></div>
     <div class="relative z-10 fade-in">
-      <p class="text-lg">The Wedding Of</p>
-      <h1 class="text-5xl md:text-7xl my-4">Ahmad & Nisrina</h1>
-      <p>05. 09. 2026</p>
-      <button onclick="bukaUndangan()" class="mt-8 bg-maroon px-6 py-3 rounded-full hover:bg-wine transition">Buka Undangan</button>
+      <p class="text-base md:text-lg">The Wedding Of</p>
+      <h1 class="text-4xl md:text-7xl my-4">Ahmad & Nisrina</h1>
+      <p class="text-sm md:text-base">05. 09. 2026</p>
+      <button onclick="bukaUndangan()" class="mt-8 bg-maroon px-6 py-3 rounded-full hover:bg-wine transition font-bold shadow-lg">Buka Undangan</button>
     </div>
   </section>
 
   <!-- MEMPELAI -->
-  <section id="mempelai" class="py-20 text-center">
-    <div class="container mx-auto px-4" data-aos="fade-up">
-      <h2 class="text-4xl text-maroon mb-4">Bismillahirrahmanirrahim</h2>
-      <p class="max-w-2xl mx-auto mb-12">Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud menyelenggarakan pernikahan kami</p>
-      <div class="grid md:grid-cols-2 gap-10 max-w-3xl mx-auto">
-        <div data-aos="fade-right"><h3 class="text-3xl text-maroon">Ahmad Saepudin</h3><p>Putra dari Bapak Opar & Ibu Rosita</p></div>
-        <div data-aos="fade-left"><h3 class="text-3xl text-maroon">Nisrina</h3><p>Putri dari Bapak Iwan & Ibu Elis</p></div>
+  <section id="mempelai" class="py-16 md:py-20 text-center px-4">
+    <div class="container mx-auto max-w-4xl" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl text-maroon mb-4">Bismillahirrahmanirrahim</h2>
+      <p class="max-w-2xl mx-auto mb-10 text-sm md:text-base">Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud menyelenggarakan pernikahan kami</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div data-aos="fade-right"><h3 class="text-2xl md:text-3xl text-maroon">Ahmad Saepudin</h3><p class="text-sm">Putra dari Bapak Opar & Ibu Rosita</p></div>
+        <div data-aos="fade-left"><h3 class="text-2xl md:text-3xl text-maroon">Nisrina</h3><p class="text-sm">Putri dari Bapak Iwan & Ibu Elis</p></div>
       </div>
     </div>
   </section>
 
   <!-- CERITA -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4 max-w-3xl text-center" data-aos="fade-up">
-      <h2 class="text-4xl text-maroon mb-8">Cerita Kami</h2>
-      <p class="leading-relaxed whitespace-pre-line">Tidak semua kisah cinta dimulai dari sebuah tatapan...
+  <section class="py-16 md:py-20 bg-white px-4">
+    <div class="container mx-auto max-w-3xl text-center" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl text-maroon mb-6">Cerita Kami</h2>
+      <p class="leading-relaxed whitespace-pre-line text-sm md:text-base">Tidak semua kisah cinta dimulai dari sebuah tatapan...
 "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
 (QS. Ar-Rum: 21)</p>
     </div>
   </section>
 
   <!-- JADWAL -->
-  <section class="py-20">
-    <div class="container mx-auto px-4 text-center" data-aos="fade-up">
-      <h2 class="text-4xl text-maroon mb-10">Acara Pernikahan</h2>
-      <div id="countdown" class="grid grid-cols-4 gap-4 max-w-md mx-auto mb-10"></div>
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="border-2 border-maroon p-6 rounded-lg" data-aos="zoom-in">
-          <h3 class="text-2xl text-maroon">Akad Nikah</h3><p>Sabtu, 05 September 2026</p><p>09:00 WIB</p>
-          <p class="text-sm mt-2">Majelis Jam'iatul Athfal (Baja), Kp.Cipaku RT01/RW10, Desa Cibunar, Kec. Cibatu, Kab. Garut</p>
+  <section class="py-16 md:py-20 px-4">
+    <div class="container mx-auto max-w-5xl text-center" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl text-maroon mb-8">Acara Pernikahan</h2>
+      <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-lg mx-auto mb-8"></div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border-2 border-maroon p-5 md:p-6 rounded-lg" data-aos="zoom-in">
+          <h3 class="text-xl md:text-2xl text-maroon">Akad Nikah</h3><p class="text-sm md:text-base">Sabtu, 05 September 2026</p><p class="text-sm md:text-base">09:00 WIB</p>
+          <p class="text-xs md:text-sm mt-2">Majelis Jam'iatul Athfal (Baja), Kp.Cipaku RT01/RW10, Desa Cibunar, Kec. Cibatu, Kab. Garut</p>
         </div>
-        <div class="border-2 border-maroon p-6 rounded-lg" data-aos="zoom-in">
-          <h3 class="text-2xl text-maroon">Resepsi</h3><p>Sabtu, 05 September 2026</p><p>11:00 WIB</p>
-          <p class="text-sm mt-2">Majelis Jam'iatul Athfal (Baja), Kp.Cipaku RT01/RW10, Desa Cibunar, Kec. Cibatu, Kab. Garut</p>
+        <div class="border-2 border-maroon p-5 md:p-6 rounded-lg" data-aos="zoom-in">
+          <h3 class="text-xl md:text-2xl text-maroon">Resepsi</h3><p class="text-sm md:text-base">Sabtu, 05 September 2026</p><p class="text-sm md:text-base">11:00 WIB</p>
+          <p class="text-xs md:text-sm mt-2">Majelis Jam'iatul Athfal (Baja), Kp.Cipaku RT01/RW10, Desa Cibunar, Kec. Cibatu, Kab. Garut</p>
         </div>
       </div>
-      <a href="https://maps.app.goo.gl/KRB5ksHX2Ry6E59C6" target="_blank" class="bg-maroon text-white px-8 py-3 rounded-full inline-block mt-8 hover:bg-wine transition shadow-lg">📍 Buka Lokasi di Google Maps</a>
+      <a href="https://maps.app.goo.gl/KRB5ksHX2Ry6E59C6" target="_blank" class="bg-maroon text-white px-6 py-3 rounded-full inline-block mt-8 hover:bg-wine transition shadow-lg text-sm md:text-base">📍 Buka Lokasi di Google Maps</a>
     </div>
   </section>
 
   <!-- CATATAN -->
-  <section class="py-10 bg-maroon text-white text-center">
-    <div class="container mx-auto px-4" data-aos="fade-up">
-      <p class="font-semibold">Mohon maaf untuk kerjasama dan bantuannya tamu undangan Ikhwan dan Akhwat pada saat di tempat untuk terpisah</p>
+  <section class="py-8 bg-maroon text-white text-center px-4">
+    <div class="container mx-auto max-w-3xl" data-aos="fade-up">
+      <p class="font-semibold text-sm md:text-base">Mohon maaf untuk kerjasama dan bantuannya tamu undangan Ikhwan dan Akhwat pada saat di tempat untuk terpisah</p>
     </div>
   </section>
 
   <!-- WEDDING GIFT -->
-  <section class="py-20 bg-white text-center">
-    <div class="container mx-auto px-4" data-aos="fade-up">
-      <h2 class="text-4xl text-maroon mb-6">Wedding Gift</h2>
-      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div class="bg-cream p-6 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">DANA</p><p class="text-2xl font-semibold">0895-0679-8372</p><p>a.n Nisrina</p><button onclick="copyRek('089506798372')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-sm">Salin</button></div>
-        <div class="bg-cream p-6 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">DANA</p><p class="text-2xl font-semibold">0822-2887-8738</p><p>a.n Ahmad</p><button onclick="copyRek('082228878738')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-sm">Salin</button></div>
-        <div class="bg-cream p-6 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">BRI</p><p class="text-2xl font-semibold">4160-0106-4396-532</p><p>a.n Iwan Purnama</p><button onclick="copyRek('416001064396532')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-sm">Salin</button></div>
+  <section class="py-16 md:py-20 bg-white text-center px-4">
+    <div class="container mx-auto max-w-4xl" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl text-maroon mb-6">Wedding Gift</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="bg-cream p-5 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">DANA</p><p class="text-xl font-semibold">0895-0679-8372</p><p class="text-sm">a.n Nisrina</p><button onclick="copyRek('089506798372')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-xs">Salin</button></div>
+        <div class="bg-cream p-5 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">DANA</p><p class="text-xl font-semibold">0822-2887-8738</p><p class="text-sm">a.n Ahmad</p><button onclick="copyRek('082228878738')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-xs">Salin</button></div>
+        <div class="bg-cream p-5 rounded-lg border-2 border-maroon"><p class="font-bold text-maroon">BRI</p><p class="text-xl font-semibold">4160-0106-4396-532</p><p class="text-sm">a.n Iwan Purnama</p><button onclick="copyRek('416001064396532')" class="mt-3 bg-maroon text-white px-4 py-2 rounded text-xs">Salin</button></div>
       </div>
     </div>
   </section>
 
   <!-- RSVP -->
-  <section class="py-20">
-    <div class="container mx-auto px-4 max-w-2xl" data-aos="fade-up">
-      <h2 class="text-4xl text-maroon text-center mb-6">RSVP & Ucapan</h2>
-      <p class="text-center mb-6">Kehadiran dan doa restu dari Bapak/Ibu/Saudara/i merupakan kebahagiaan bagi kami</p>
+  <section class="py-16 md:py-20 px-4">
+    <div class="container mx-auto max-w-2xl" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl text-maroon text-center mb-5">RSVP & Ucapan</h2>
+      <p class="text-center mb-6 text-sm">Kehadiran dan doa restu dari Bapak/Ibu/Saudara/i merupakan kebahagiaan bagi kami</p>
       <form id="rsvpForm" class="space-y-4">
-        <input name="nama" placeholder="Nama" class="w-full p-3 border-maroon rounded" required>
-        <textarea name="ucapan" placeholder="Ucapan & Doa" class="w-full p-3 border border-maroon rounded" rows="3" required></textarea>
-        <select name="kehadiran" class="w-full p-3 border border-maroon rounded">
+        <input name="nama" placeholder="Nama" class="w-full p-3 border-maroon rounded text-sm" required>
+        <textarea name="ucapan" placeholder="Ucapan & Doa" class="w-full p-3 border border-maroon rounded text-sm" rows="3" required></textarea>
+        <select name="kehadiran" class="w-full p-3 border border-maroon rounded text-sm">
           <option value="Hadir">Akan Hadir</option>
           <option value="Tidak Hadir">Tidak Bisa Hadir</option>
         </select>
         <button class="w-full bg-maroon text-white p-3 rounded hover:bg-wine font-bold">Kirim Ucapan</button>
       </form>
-      <h3 class="text-2xl text-maroon text-center mt-10 mb-4">Ucapan & Doa</h3>
+      <h3 class="text-xl md:text-2xl text-maroon text-center mt-8 mb-4">Ucapan & Doa</h3>
       <div id="daftarUcapan" class="space-y-4"></div>
     </div>
   </section>
 
 <script>
-  // LINK APPS SCRIPT KAMU
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzK3PIW-0V6OxclRAH57sKEaXlrp-eb6NTvgWiOO7IBrD2hxopAESBbFafb0Bc6bjrQ/exec";
+  AOS.init({ duration: 800, once: true });
 
-  AOS.init({ duration: 1000, once: true });
-
-  // MUSIC
+  // MUSIC - AUTO PLAY PAS KLIK BUKA UNDANGAN
   const music = document.getElementById('bgMusic');
   const musicBtn = document.getElementById('musicBtn');
   const musicIcon = document.getElementById('musicIcon');
   const musicText = document.getElementById('musicText');
   let playing = false;
+  
   function toggleMusic() {
-    if(playing){ music.pause(); musicIcon.textContent = '♫'; musicText.textContent = 'Play Music'; }
-    else { music.play().then(() => { musicIcon.textContent = '❚'; musicText.textContent = 'Pause Music'; }).catch(err => { console.log('Autoplay diblokir') }); }
+    if(playing){ 
+      music.pause(); 
+      musicIcon.textContent = '♫'; 
+      musicText.textContent = 'Play'; 
+    } else { 
+      music.play().then(() => { 
+        musicIcon.textContent = '❚'; 
+        musicText.textContent = 'Pause'; 
+      }).catch(err => { console.log('Autoplay diblokir') }); 
+    }
     playing =!playing;
   }
+  
   musicBtn.onclick = toggleMusic;
-  function bukaUndangan(){ document.getElementById('mempelai').scrollIntoView({behavior:'smooth'}); if(!playing){ toggleMusic(); } }
+  
+  function bukaUndangan(){ 
+    document.getElementById('mempelai').scrollIntoView({behavior:'smooth'}); 
+    if(!playing){ // AUTO PLAY
+      toggleMusic(); 
+    }
+  }
 
   // COPY REKENING
   function copyRek(nomor){ navigator.clipboard.writeText(nomor); alert('Nomor rekening ' + nomor + ' berhasil disalin'); }
@@ -148,7 +169,7 @@
     const d = Math.floor(gap / (1000*60*60*24)); const h = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
     const m = Math.floor((gap % (1000*60*60)) / (1000*60)); const s = Math.floor((gap % (1000*60)) / 1000);
     if(gap > 0){
-      document.getElementById('countdown').innerHTML = `<div class="bg-maroon text-white p-4 rounded"><h3 class="text-2xl">${d}</h3>Hari</div><div class="bg-maroon text-white p-4 rounded"><h3 class="text-2xl">${h}</h3>Jam</div><div class="bg-maroon text-white p-4 rounded"><h3 class="text-2xl">${m}</h3>Menit</div><div class="bg-maroon text-white p-4 rounded"><h3 class="text-2xl">${s}</h3>Detik</div>`;
+      document.getElementById('countdown').innerHTML = `<div class="bg-maroon text-white p-3 rounded"><h3 class="text-xl md:text-2xl">${d}</h3><p class="text-xs">Hari</p></div><div class="bg-maroon text-white p-3 rounded"><h3 class="text-xl md:text-2xl">${h}</h3><p class="text-xs">Jam</p></div><div class="bg-maroon text-white p-3 rounded"><h3 class="text-xl md:text-2xl">${m}</h3><p class="text-xs">Menit</p></div><div class="bg-maroon text-white p-3 rounded"><h3 class="text-xl md:text-2xl">${s}</h3><p class="text-xs">Detik</p></div>`;
     }
   }, 1000);
 
@@ -157,44 +178,35 @@
     e.preventDefault();
     const btn = e.target.querySelector('button');
     btn.innerText = 'Mengirim...'; btn.disabled = true;
-    
     const formData = Object.fromEntries(new FormData(e.target));
     formData.action = "submit";
-    
     fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) })
    .then(res => res.json())
    .then(() => {
       alert('Terima kasih atas ucapannya ❤️');
       e.target.reset();
-      loadUcapan(); // langsung refresh
-    }).catch(err => {
-      alert('Gagal kirim ucapan');
-      console.log(err)
-    }).finally(() => {
-      btn.innerText = 'Kirim Ucapan'; btn.disabled = false;
-    });
+      loadUcapan();
+    }).catch(err => alert('Gagal kirim ucapan'))
+    .finally(() => { btn.innerText = 'Kirim Ucapan'; btn.disabled = false; });
   });
 
-  // LOAD UCAPAN - INI YANG DIBENERIN
+  // LOAD UCAPAN
   function loadUcapan(){
-    fetch(SCRIPT_URL) // PAKE GET BIAR BISA DIBACA
+    fetch(SCRIPT_URL)
    .then(res => res.json()).then(data => {
       if(data.length === 0){
-        document.getElementById('daftarUcapan').innerHTML = `<p class="text-center text-gray-500">Belum ada ucapan. Jadilah yang pertama!</p>`;
+        document.getElementById('daftarUcapan').innerHTML = `<p class="text-center text-gray-500 text-sm">Belum ada ucapan.</p>`;
         return;
       }
       document.getElementById('daftarUcapan').innerHTML = data.reverse().map(d => `
         <div class="bg-white p-4 rounded shadow border-l-4 border-maroon">
-          <p class="font-bold text-maroon">${d.nama} <span class="text-sm font-normal text-gray-600">- ${d.kehadiran}</span></p>
-          <p class="mt-1">${d.ucapan}</p>
+          <p class="font-bold text-maroon text-sm">${d.nama} <span class="text-xs font-normal text-gray-600">- ${d.kehadiran}</span></p>
+          <p class="mt-1 text-sm">${d.ucapan}</p>
         </div>
       `).join('');
-    }).catch(err => {
-      console.log('Gagal load ucapan', err)
-      document.getElementById('daftarUcapan').innerHTML = `<p class="text-center text-red-500">Gagal memuat ucapan</p>`;
-    });
+    }).catch(err => console.log('Gagal load ucapan'));
   }
-  loadUcapan(); // panggil pas buka halaman
+  loadUcapan();
 </script>
 </body>
 </html>
